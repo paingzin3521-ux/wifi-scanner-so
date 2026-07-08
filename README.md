@@ -9,8 +9,8 @@ To run this tool in Termux, follow these steps:
 1. **Update and Install Dependencies:**
    ```bash
    pkg update && pkg upgrade
-   pkg install python git clang
-   pip install aiohttp pycryptodome
+   pkg install python git clang make -y
+   pip install aiohttp pycryptodome cython
    ```
 
 2. **Clone the Repository:**
@@ -19,10 +19,16 @@ To run this tool in Termux, follow these steps:
    cd wifi-scanner-so
    ```
 
-3. **Run the Tool:**
+3. **Compile on your device:**
+   (This step ensures the code works on your specific phone architecture)
+   ```bash
+   python setup.py build_ext --inplace
+   ```
+
+4. **Run the Tool:**
    ```bash
    python run.py
    ```
 
 ## Note
-The core logic is compiled into `wifi.so` to prevent unauthorized access to the source code.
+After compilation, `wifi.so` is created specifically for your device. You can delete `wifi.py` and `setup.py` if you want to keep only the compiled version.
